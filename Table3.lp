@@ -1,0 +1,15 @@
+det(hasProp(P,X),J)  :- hasProp(P,X,J).    %(1)        
+det(hasProp(P,X),J)  :- -hasProp(P,X,J).   %(2)         
+det(good(X),J) :- good(X,J).               %(3)                
+det(good(X),J) :- -good(X,J).              %(4)                 
+det(bad(X),J)  :- bad(X,J).                %(5)         
+det(bad(X),J)  :- -bad(X,J).               %(6)                     
+det(weight(X),J)   :- weight(X,N,J).       %(7)             
+
+obl(det(bad(X)),J)  :- hasProp(P,X,J), perm(X,J).                      %(8) 
+obl(det(good(X)),J) :- hasProp(P,X,J), perm(X,J).                      %(9)         
+obl(det(weight(X)),J) :- perm(X,J), not permZero(X,J), hasProp(P,X,J). %(10)     
+obl(det(hasProp(P,X)),J)  :- props(X), parent(P), judge(J), obl(X,J).  %(11)         
+obl(det(hasProp(P,X)),J)  :- props(X), parent(P), judge(J), obl(-X,J). %(12)         
+
+viol(obl(det(X),J),det(X,I)) :-  obl(det(X),J), not det(X,J), det(X,I), high(J,I).  %(13)
