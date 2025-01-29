@@ -26,6 +26,9 @@ The results of section 7.3 can be generated using the following command:
 
 `clingo Table1.lp Table2.lp Table3.lp Table4.lp Table5.lp Case2.lp`
 
+The scalability results can be generated using the following command: 
+
+`clingo Table1.lp Table2.lp Table3.lp Table4.lp Table5.lp Scalability.lp`
 
 
 
